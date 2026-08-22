@@ -1,0 +1,39 @@
+/* Ordinary reading paragraphs and multi-line list items follow the PDF's
+   justified text block. Captions, labels, tables and controls are excluded. */
+section p:not(.text-center):not(.text-right):not([class*="text-center"]):not([class*="text-right"]):not(.adt-caption):not([class*="caption"]):not(figure p):not(figcaption p):not(aside p):not(td p):not(th p),
+section li:not(.text-center):not(.text-right):not([class*="text-center"]):not([class*="text-right"]):not(td li):not(th li) {
+  text-align: justify !important;
+  text-justify: inter-word;
+  overflow-wrap: normal;
+  word-spacing: normal;
+}
+
+section p > span,
+section li > span {
+  word-spacing: normal;
+}
+
+/* The last line of a justified source paragraph must remain naturally spaced. */
+section p:not(.text-center):not(.text-right):not([class*="text-center"]):not([class*="text-right"]):not(.adt-caption):not([class*="caption"]):not(figure p):not(figcaption p):not(aside p):not(td p):not(th p),
+section li:not(.text-center):not(.text-right):not([class*="text-center"]):not([class*="text-right"]):not(td li):not(th li) {
+  text-align-last: auto;
+}
+
+/* The PDF keeps learning controls left aligned.  Activity instructions,
+   question prompts and answer areas must never be stretched like body prose. */
+#content section div[class*="border"] p,
+#content section[data-section-type^="activity"] div[class*="grid"] p,
+#content section[data-section-type^="activity"] div[class*="flex"] > p,
+#content section[data-section-type^="activity"] div[class*="flex"] > div > p,
+#content section[data-section-type="text_and_single_image"] div[class*="flex"] > p,
+#content section[data-section-type^="activity"] p[class*="pl-"],
+#content section[data-section-type^="activity"] p[class*="indent"],
+#content section[data-section-type^="activity"] p:has(input),
+#content section[data-section-type^="activity"] p:has(textarea),
+#content section[data-section-type^="activity"] label,
+#content section[data-section-type^="activity"] td,
+#content section[data-section-type^="activity"] th {
+  text-align: left !important;
+  text-align-last: auto;
+  word-spacing: normal;
+}
